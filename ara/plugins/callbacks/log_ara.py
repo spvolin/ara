@@ -176,7 +176,7 @@ class CallbackModule(CallbackBase):
             if not isinstance(ignore_errors, bool):
                 ignore_errors = True if ignore_errors == "yes" else False
 
-        if self.task.action == 'setup' and 'ansible_facts' in results:
+        if self.task.action in ['setup','ios_facts', 'junos_facts'] and 'ansible_facts' in results:
             # Potentially sanitize some Ansible facts to prevent them from
             # being saved both in the host facts and in the task results.
             for fact in app.config['ARA_IGNORE_FACTS']:
